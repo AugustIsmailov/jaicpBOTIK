@@ -1,11 +1,20 @@
 require: patterns/patterns.sc
 require: slotfilling/slotFilling.sc
   module = sys.zb-common
+  
+init:
+    bind("postProcess", function($context) {
+        log("|||||||||||||||||||| MY LOG"+ toPrettyString($context))    
+    })
 
 theme: /
     
     state: Start
         q!: $regex</start>
+        script:
+            $temp.botName = capitalize($injector.botName)
+        a: Добрый день! Меня зовут {{$temp.botName}}.
+        
         
     state: Hello
         intent!: /привет
