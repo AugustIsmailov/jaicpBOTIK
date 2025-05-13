@@ -13,6 +13,13 @@ theme: /
             a: Привет! Рад тебя видеть!
             a: Здравствуй! Как дела?
             a: Приветствую! Чем могу помочь?
+        script:
+            $response.replies = $response.replies || [];
+            $response.replies.push({ 
+                type: "image", 
+                imageUrl: "https://i.pinimg.com/736x/50/7c/a4/507ca4da5598d5ab4febb9403d434b11.jpg", 
+                text: "Nagi" 
+            });
         go!: /SuggestTour
 
     state: Bye
@@ -21,7 +28,7 @@ theme: /
             a: Пока! До встречи!
             a: Пока-пока! Хорошего дня!
             a: До свидания! Надеюсь, увидимся снова!
-
+            
     state: CatchAll || noContext = true
         event!: noMatch
         random:
