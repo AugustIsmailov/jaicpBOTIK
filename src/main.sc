@@ -38,10 +38,11 @@ theme: /
                 { text: "В Камелот", url: "https://www.youtube.com/watch?v=aJkJVj0JlVI" }
                 { text: "В Рим", url: "https://www.youtube.com/watch?v=aJkJVj0JlVI" }
                 { text: "В Нидерланд", url: "https://www.youtube.com/watch?v=aJkJVj0JlVI" }
-        buttons:
-            "В Камелот"
-            "В Рим"
-            "В Нидерланды"
+        else:
+            buttons:
+                "В Камелот"
+                "В Рим"
+                "В Нидерланды"
             
         state: ChooseTour
             q: * (Камелот) *
