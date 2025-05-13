@@ -1,23 +1,43 @@
+require: patterns/patterns.sc
 require: slotfilling/slotFilling.sc
   module = sys.zb-common
-theme: /
 
+theme: /
+    
     state: Start
         q!: $regex</start>
-        a: Начнём.
-
+        
     state: Hello
         intent!: /привет
-        a: Привет привет
+        random:
+            a: Привет! Рад тебя видеть!
+            a: Здравствуй! Как дела?
+            a: Приветствую! Чем могу помочь?
+        go!: /SuggestMovie
 
     state: Bye
         intent!: /пока
-        a: Пока пока
+        random:
+            a: Пока! До встречи!
+            a: Пока-пока! Хорошего дня!
+            a: До свидания! Надеюсь, увидимся снова!
 
-    state: NoMatch
+    state: CatchAll
         event!: noMatch
-        a: Я не понял. Вы сказали: {{$request.query}}
+        random:
+            a: Извините, я не понял ваш запрос. Можете, пожалуйста, переформулировать?
+            a: Упс! Похоже, я не совсем понял, что вы хотите. Попробуйте ещё раз.
+            a: Я не уверен, что вы имели в виду. Можете уточнить?
+            
+            
+    state: SuggestMovie
+        a: Куда ты хочешь пойти?
+        buttons:
+            "В Камелот"
+            "В Рим"
+            "В Нидерланды"
 
     state: Match
         event!: match
         a: {{$context.intent.answer}}
+        
