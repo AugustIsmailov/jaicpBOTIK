@@ -45,30 +45,40 @@ theme: /
             a: Упс! Похоже, я не совсем понял, что вы хотите. Попробуйте ещё раз.
             a: Я не уверен, что вы имели в виду. Можете уточнить?
             
-            
-    state: SuggestTour || modal = true
-        a: Куда ты хочешь пойти?
-        if: $request.channelType === "telegram"
-            inlineButtons:
-                {text: "В Камелот", url: "https://www.youtube.com/watch?v=aJkJVj0JlVI"}
-                {text: "В Рим", url: "https://www.youtube.com/watch?v=aJkJVj0JlVI"}
-                {text: "В Нидерланд", url: "https://www.youtube.com/watch?v=aJkJVj0JlVI"}
-        else: 
-            buttons:
-                "В Камелот"
-                "В Рим"
-                "В Нидерланды"
+    state: SuggestTour
+        script:
+            $response.replies = [];
 
-        state: ChooseTour
-            q: * (Камелот) *
-            q: * (Рим) *
-            q: * (Нидерланды) *
-            go!: /HowManyTickets
-            
-        state: LocalCatchAll
-            event: noMatch
-            a: Такого тура нету
-            go!: ..
+            $response.replies.push({
+                type: "image",
+                imageUrl: "https://i.pinimg.com/736x/50/7c/a4/507ca4da5598d5ab4febb9403d434b11.jpg",
+                text: "Камелот"
+            });
+            $response.replies.push({
+                type: "image",
+                imageUrl: "https://i.pinimg.com/736x/50/7c/a4/507ca4da5598d5ab4febb9403d434b11.jpg",
+                text: "Рим"
+            });
+            $response.replies.push({
+                type: "image",
+                imageUrl: "https://i.pinimg.com/736x/50/7c/a4/507ca4da5598d5ab4febb9403d434b11.jpg",
+                text: "Нидерланды"
+            });
+            $response.replies.push({
+                type: "buttons",
+                buttons: [
+                    "Хочу в Камелот",
+                    "Хочу в Рим",
+                    "Хочу в Нидерланды"
+                ]
+            });
+
+    state: ChooseTour
+        q: * (Камелот) *
+        q: * (Рим) *
+        q: * (Нидерланды) *
+        a: Отличный выбор! Сейчас расскажу подробнее.
+
             
     state: HowManyTickets
         a: Сколько билетов вам нужно?
