@@ -46,24 +46,23 @@ theme: /
             a: Я не уверен, что вы имели в виду. Можете уточнить?
             
     state: SuggestTour
+        a:  text
         script:
             $response.replies = [];
+            $response.replies.push({
+                "type": "buttons",
+                "buttons": [
+                    {
+                        "text": "Кнопка 1",
+                        "url": "https://i.pinimg.com/736x/50/7c/a4/507ca4da5598d5ab4febb9403d434b11.jpg"
+                    },
+                    {
+                        "text": "Кнопка 2",
+                        "url": "https://i.pinimg.com/736x/50/7c/a4/507ca4da5598d5ab4febb9403d434b11.jpg"
+                    }
+                ]
+            });
 
-            $response.replies.push({
-                type: "image",
-                imageUrl: "https://i.pinimg.com/736x/50/7c/a4/507ca4da5598d5ab4febb9403d434b11.jpg",
-                text: "Камелот"
-            });
-            $response.replies.push({
-                type: "image",
-                imageUrl: "https://i.pinimg.com/736x/50/7c/a4/507ca4da5598d5ab4febb9403d434b11.jpg",
-                text: "Рим"
-            });
-            $response.replies.push({
-                type: "image",
-                imageUrl: "https://i.pinimg.com/736x/50/7c/a4/507ca4da5598d5ab4febb9403d434b11.jpg",
-                text: "Нидерланды"
-            });
             $response.replies.push({
                 type: "buttons",
                 buttons: [
